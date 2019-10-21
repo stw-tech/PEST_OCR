@@ -63,12 +63,10 @@ const recognize = (pngPath, pageIdx, lang, cb = () => {}) => {
         if (ocrResult[fileName].pages[pageIdx] === undefined) {
           ocrResult[fileName].pages[pageIdx] = {
             imgPath: pngPath.substring(AppConfig.PATHS.PNG_DIR.length + 1),
-            // textList,
             joinedTerm: textList.join('').toLowerCase(),
           };
         } else {
           ocrResult[fileName].pages[pageIdx].pageIdx = pageIdx;
-          ocrResult[fileName].pages[pageIdx].textList = ocrResult[fileName].pages[pageIdx].textList.concat(textList);
           ocrResult[fileName].pages[pageIdx].joinedTerm = `${ocrResult[fileName].pages[pageIdx].joinedTerm}${textList.join('').toLowerCase()}`;
         }
         cb();
